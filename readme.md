@@ -1,5 +1,5 @@
 # SFML 2D Light (WIP)
-[Demo](https://raw.githubusercontent.com/FoFabien/SFML-2D-Light/master/output.gif)  
+![Demo](https://raw.githubusercontent.com/FoFabien/SFML-2D-Light/master/output.gif)  
 Use C++11.  
 Two functions in the demo:  
 - closestPoint(), called by drawLight()  
