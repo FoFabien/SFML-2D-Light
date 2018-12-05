@@ -36,11 +36,17 @@ sf::Vector2f closestPoint(const float &angle, const sf::Vector2i &currentTile, c
     sf::Vector2f dv(0, 0); // vertical distance
     sf::Vector2f dh(0, 0); // horizontal distance
 
-    // vertical (same thing)
-    if(point.x == currentTile.x * tileSize.x) dv.x = 1;
-    else if (dir.x < 0) dv.x = point.x - (currentTile.x * tileSize.x);
-    else                dv.x = (currentTile.x + 1) * tileSize.x - point.x;
-
+    // vertical
+    if(point.x == currentTile.x * tileSize.x)
+    {
+        if(dir.x < 0) dv.x = 1;
+        else          dv.x = tileSize.x;
+    }
+    else
+    {
+        if(dir.x < 0) dv.x = point.x - (currentTile.x * tileSize.x);
+        else          dv.x = (currentTile.x + 1) * tileSize.x - point.x;
+    }
     dv.y = dv.x * tan(angle);
     if (dir.x < 0)
     {
@@ -49,9 +55,16 @@ sf::Vector2f closestPoint(const float &angle, const sf::Vector2i &currentTile, c
     }
 
     // horizontal
-    if(point.y == currentTile.y * tileSize.y) dh.y = 1; // edge of tile
-    else if (dir.y < 0) dh.y = point.y - (currentTile.y * tileSize.y); // difference to the edge
-    else                dh.y = (currentTile.y + 1) * tileSize.y - point.y; // (depending on our direction)
+    if(point.y == currentTile.y * tileSize.y)
+    {
+       if(dir.y < 0) dh.y = 1;
+       else          dh.y = tileSize.y;
+    }
+    else
+    {
+       if(dir.y < 0) dh.y = point.y - (currentTile.y * tileSize.y);
+       else          dh.y = (currentTile.y + 1) * tileSize.y - point.y;
+    }
 
     dh.x = dh.y / tan(angle); // get x from y
     if(dir.y < 0) // fix the sign
